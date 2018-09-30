@@ -79,6 +79,30 @@ then this book is for you.
 If you just started learning learning CSS or want to get an overview of what CSS is and
 what it’s capable of, then this book is not for you
 
+## Prerequisites
+There are a few topic you should be familiar with before you start reading this book.
+
+### Pure functions and side effects
+This is a topic from outside the CSS world. You can find many blog articles
+just about these two topics. I recommend using your search engine of choice and
+read a few articles about them until you think you understand them,
+could apply them in a project right away and see the benefits
+(especially in regards to testability of your code).
+
+### Programming bottom up
+The article I recommend to read about this topic is written by Paul Graham.
+You can find it on his website or by simply using a search engine and look for
+“Paul Graham Programming bottom up”.
+
+### BEM
+BEM introduced a naming convention for css classes to improve CSS performance.
+Although the syntax can look a bit ugly, it has worked great for me so far!
+You can read more about this on BEM’s website.
+
+### SMACSS
+I like SMACSS mainly for its separation of CSS into problem domains.
+The pages under the category “Core” are available on the website of its inventor.
+
 ## State, Logic and Presentation
 
 After having worked with Redux and React in the JavaScript world
