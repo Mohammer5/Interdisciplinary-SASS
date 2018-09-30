@@ -109,14 +109,14 @@ The pages under the category “Core” are available on the website of its inve
 <a name="chapter-naming-convention"></a>
 ## CSS class naming convention
 Before the times of HTML5, the `<hr>`-tag was used to insert a horizontal rule.
-The reason to remove this functionality in HTML5 is that HTML should be about semantic,
+The reason to remove this functionality in HTML5 is that HTML should be about semantics,
 not about styling. It’s best to express what the content is about,
 not what it should look like as that’s the purpose of CSS (it’s harder to maintain as well,
 but I suppose that you know the principle “Separation of concerns” already).
 
 Because of this, I think that class names should not describe what the element it’s applied to
 should look like but rather describe the contents. You might think that this eliminated reusability
-s you can’t reuse class names for different contents, but we’ll talk more about that later.
+as you can’t reuse class names for different contents, but we’ll talk more about that later.
 
 Let’s have a look at a few examples
 
