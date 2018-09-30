@@ -66,6 +66,15 @@ Of course this doesn’t apply to CSS the way it works in JavaScript, but I foun
 apply this mindset to CSS and it has worked great for me. Besides that, the other crucial
 concept I apply everytime writing code is called: “Programming bottom up”.
 
+## Who this book is for
+This book is meant for professional front end engineers who work with CSS on a daily basis.
+I will list some topics (including links if you haven’t heard of or studied these topics yet) which will be treated as if they are known the to reader of this book already.
+
+If you are interested in improving the scalability and maintainability of the styling of your application, and have worked on big projects already, then this book is for you.
+
+### Who this book is not for
+If you just started learning learning CSS or want to get an overview of what CSS is and what it’s capable of, then this book is not for you
+
 ## State, Logic and Presentation
 
 After having worked with Redux and React in the JavaScript world
