@@ -103,6 +103,92 @@ You can read more about this on BEM’s website.
 I like SMACSS mainly for its separation of CSS into problem domains.
 The pages under the category “Core” are available on the website of its inventor.
 
+CSS class naming convention
+Before the times of HTML5, the <hr>-tag was used to insert a horizontal rule.
+The reason to remove this functionality in HTML5 is that HTML should be about semantic,
+not about styling. It’s best to express what the content is about,
+not what it should look like as that’s the purpose of CSS (it’s harder to maintain as well,
+but I suppose that you know the principle “Separation of concerns” already).
+
+Because of this, I think that class names should not describe what the element it’s applied to
+should look like but rather describe the contents. You might think that this eliminated reusability
+s you can’t reuse class names for different contents, but we’ll talk more about that later.
+
+Let’s have a look at a few examples
+
+```HTML
+<div class="secondary-information">
+  <h3 class="secondary-information__headline">
+    More information about this topic
+  </h3>
+
+  <ul class="secondary-information__headline link-list">
+    <li class="link-list__item">
+      <a class="link-list__link" href="https://domain1.tld">
+        More info 1
+      </a>
+    </li>
+    <li class="link-list__item">
+      <a class="link-list__link" href="https://domain2.tld">
+        More info 2
+      </a>
+    </li>
+  </ul>
+</div>```
+
+As you can see I used classes to describe the contents. This could be a box in a sidebar
+to show more information to the topic, but I didn’t gave it the name “box”
+as that wouldn’t say anything about the box. I didn’t choose a name though
+that describes the exact contents of this box. If this box needs specific
+styles because of its contents, then this should be done with a modifier.
+I. e. you can have a box with secondary information about browser quirks
+which you want to highlight explicitly, then you can add the class name
+“secondary-information--browser-quirks” to the main block (BEM) html element.
+
+There can be different boxes for the sidebar with different purposes and
+therefore different class names and you might think that in that case we
+have to apply the same styles to different class selector and you’re right.
+But that doesn’t mean that we’ll have duplicate css rules. I’ll talk more about
+this topic in the chapters “Programming bottom up” and “Organizing a project”.
+
+By working this way it is significantly easier to implement small differing
+details between boxes that look more or less the same without having to come up
+with complicated, abstract names for the class names. The reader of your code
+(which could be future-you) will know what the element and its styling is about
+and - if you organized your project in a good way (more about this in the
+chapter “Organizing a project”) - where to find the style rules and adjust them
+without any hassle.
+
+```HTML
+<div class="video-actions">
+  <span class="video-actions__video-actions video-actions--toggle-play">
+    Toggle play
+  </span>
+  <span class="video-actions__video-actions video-action--stop">
+    Stop
+  </span>
+  <span class="video-actions__video-actions video-action--volume-switch">
+    Toggle mute
+  </span>
+  <span class="video-actions__video-actions video-action--toggle-fullscreen">
+    Toggle fullscreen
+  </span>
+</div>
+
+This is a simplified action bar of a video player. It contains a few standard
+actions the viewer can perform while watching a video. The class names for
+buttons themselves are not called “action-button” as it’s describing what it’s
+going to look like (or in this case, how it’s going to be working -> A button
+means clickable).
+
+If I named the buttons “video-action-button” and I got the requirement from the
+UX department to change the toggle mute button into a mix of a button and a bar
+so that the viewer can change the volume as well, the name “button” wouldn’t be
+appropriate anymore.
+
+By avoiding describing the style or intended functionality, whenever the
+styling or functionality changes, there’s no need to adjust the css. 
+
 ## State, Logic and Presentation
 
 After having worked with Redux and React in the JavaScript world
