@@ -120,7 +120,7 @@ s you can’t reuse class names for different contents, but we’ll talk more ab
 
 Let’s have a look at a few examples
 
-```HTML
+```html
 <div class="secondary-information">
   <h3 class="secondary-information__headline">
     More information about this topic
@@ -138,7 +138,8 @@ Let’s have a look at a few examples
       </a>
     </li>
   </ul>
-</div>```
+</div>
+```
 
 As you can see I used classes to describe the contents. This could be a box in a sidebar
 to show more information to the topic, but I didn’t gave it the name “box”
@@ -163,7 +164,7 @@ and - if you organized your project in a good way (more about this in the
 chapter “Organizing a project”) - where to find the style rules and adjust them
 without any hassle.
 
-```HTML
+```html
 <div class="video-actions">
   <span class="video-actions__video-actions video-actions--toggle-play">
     Toggle play
@@ -178,6 +179,7 @@ without any hassle.
     Toggle fullscreen
   </span>
 </div>
+```
 
 This is a simplified action bar of a video player. It contains a few standard
 actions the viewer can perform while watching a video. The class names for
