@@ -12,20 +12,20 @@ might find some answers to questions in this book.
 
 ## Table of Contents
 
-* [Introduction](Chapters/introduction.md)
-* [Who this book is for](Chapters/TODO.md)
-* [Prerequisites](Chapters/TODO.md)
-* [CSS class naming convention](Chapters/TODO.md)
-* [State, transformation, presentation](Chapters/State,\ Logic\ and\ Presentation.md)
-* [Programming bottom up](Chapters/Programming\ bottom\ up.md)
-* [Organizing a project](Chapters/TODO.md)
-* [Testing the components](Chapters/TODO.md)
-* [TDD in SASS](Chapters/TODO.md)
-* [Example 1: Three-level navigation](Chapters/TODO.md)
-* [Example 2: Shop product page sidebar](Chapters/TODO.md)
-* [Final thoughts](Chapters/TODO.md)
+* [Introduction](#chapter-intro)
+* [Who this book is for](#chapter-who-is-for)
+* [Prerequisites](#chapter-prerequisites)
+* [CSS class naming convention](#chapter-naming-convention)
+* [State, transformation, presentation](#chapter-stp)
+* [Programming bottom up](#chapter-pbu)
+* [Organizing a project](#chapter-organize)
+* [Testing the components](#chapter-testing)
+* [TDD in SASS](#chapter-tdd)
+* [Example 1: Three-level navigation](#chapter-example-1)
+* [Example 2: Shop product page sidebar](#chapter-example-2)
+* [Final thoughts](#chapter-final-thoughts)
 
-## Introduction
+## Introduction <a name="chapter-intro"></a>
 
 As a software engineer, you always try to write perfect code. I think we all can admit that it
 will never happen. Every developer knows the moment when they have to take a look at their
@@ -66,7 +66,7 @@ Of course this doesn’t apply to CSS the way it works in JavaScript, but I foun
 apply this mindset to CSS and it has worked great for me. Besides that, the other crucial
 concept I apply everytime writing code is called: “Programming bottom up”.
 
-## Who this book is for
+## Who this book is for <a name="chapter-who-is-for"></a>
 This book is meant for professional front end engineers who work with CSS on a daily basis.
 I will list some topics (including links if you haven’t heard of or studied these topics yet)
 which will be treated as if they are known the to reader of this book already.
@@ -79,7 +79,7 @@ then this book is for you.
 If you just started learning learning CSS or want to get an overview of what CSS is and
 what it’s capable of, then this book is not for you
 
-## Prerequisites
+## Prerequisites <a name="chapter-prerequisites"></a>
 There are a few topic you should be familiar with before you start reading this book.
 
 ### Pure functions and side effects
@@ -103,7 +103,7 @@ You can read more about this on BEM’s website.
 I like SMACSS mainly for its separation of CSS into problem domains.
 The pages under the category “Core” are available on the website of its inventor.
 
-## CSS class naming convention
+## CSS class naming convention <a name="chapter-naming-convention"></a>
 Before the times of HTML5, the `<hr>`-tag was used to insert a horizontal rule.
 The reason to remove this functionality in HTML5 is that HTML should be about semantic,
 not about styling. It’s best to express what the content is about,
@@ -189,7 +189,7 @@ appropriate anymore.
 By avoiding describing the style or intended functionality, whenever the
 styling or functionality changes, there’s no need to adjust the css. 
 
-## State, Logic and Presentation
+## State, Logic and Presentation <a name="chapter-stp"></a>
 
 After having worked with Redux and React in the JavaScript world
 for some time, I really like the concept of storing all the data
@@ -231,7 +231,7 @@ it should contain variables, mixins and functions only!
 In order to test the styleguide with tests, a seperate index file will be required*
 (I'll talk about seperate index files in [a later chapter](@TODO))
 
-## Programming bottom up
+## Programming bottom up <a name="chapter-pbu"></a>
 
 Programming bottom up is the core skill for good abstraction layers.
 And as it's useful when writing code for software applications, it's also
