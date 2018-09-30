@@ -103,8 +103,8 @@ You can read more about this on BEM’s website.
 I like SMACSS mainly for its separation of CSS into problem domains.
 The pages under the category “Core” are available on the website of its inventor.
 
-CSS class naming convention
-Before the times of HTML5, the <hr>-tag was used to insert a horizontal rule.
+## CSS class naming convention
+Before the times of HTML5, the `<hr>`-tag was used to insert a horizontal rule.
 The reason to remove this functionality in HTML5 is that HTML should be about semantic,
 not about styling. It’s best to express what the content is about,
 not what it should look like as that’s the purpose of CSS (it’s harder to maintain as well,
