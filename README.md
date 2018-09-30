@@ -268,7 +268,7 @@ grey for all other actions and alto for disabled actions.
 When you start working on the project, these colors are not used for anything else.
 So you could store them in variables descibing their use cases, like:
 
-```CSS
+```scss
 $action-primary: #00ff00;
 $action-default: #808080;
 $action-disabled: #ddd;
@@ -296,7 +296,7 @@ either at the webapp itself or looks up the color code.
 That approach is called Programming top down. You create a solution for a specific problem domain.
 But as you can see this has several disadvantages, here's another solution for this:
 
-```CSS
+```scss
 // First we define the colors themself
 $blue: #0000ff;
 $red: #ff0000;
