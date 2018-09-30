@@ -126,18 +126,20 @@ Let’s have a look at a few examples
     More information about this topic
   </h3>
 
-  <ul class="secondary-information__headline link-list">
-    <li class="link-list__item">
-      <a class="link-list__link" href="https://domain1.tld">
-        More info 1
-      </a>
-    </li>
-    <li class="link-list__item">
-      <a class="link-list__link" href="https://domain2.tld">
-        More info 2
-      </a>
-    </li>
-  </ul>
+  <div class="secondary-information__content">
+    <ul class="link-list">
+      <li class="link-list__item">
+        <a class="link-list__link" href="https://domain1.tld">
+          More info 1
+        </a>
+      </li>
+      <li class="link-list__item">
+        <a class="link-list__link" href="https://domain2.tld">
+          More info 2
+        </a>
+      </li>
+    </ul>
+    </div>
 </div>
 ```
 
