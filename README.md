@@ -138,30 +138,38 @@ import {
 	partialRight,
 } from 'ramda';
 
-const isTrue = equals(true);
+type IsTrue = (val: boolean): boolean;
+const isTrue: IsTrue =
+	equals(true);
 
-const extractGenresFromBook = prop('genres');
+type ExtractGenresFrom = (obj: { genres: Genre[] }) => Genre[];
+const extractGenresFrom: ExtractGenresFrom =
+	prop('genres');
 
-const doesBookHaveGenre = (book: Book, genre: Genre): boolean =>
-	contains(
+type DoesBookHaveGenre = (book: Book, genre: Genre) => boolean;
+const doesBookHaveGenre: DoesBookHaveGenre =
+	(book, genre) => contains(
 		genre,
-		extractGenresFromBook(book),
+		extractGenresFrom(book),
 	);
 
-const mapBookHasGenres = (book: Book, genres: Genre[]): boolean[] =>
-	map(
+type MapBookHasGenres = (book: Book, genres: Genre[]) => boolean[];
+const mapBookHasGenres: MapBookHasGenres =
+	(book, genres) => map(
 		partial(doesBookHaveGenre, [ book ]),
 		genres,
 	);
 
-const doesBookHaveOneOfGenres = (book: Book, genres: Genre[]): boolean =>
-	any(
+type DoesBookHaveOneOfGenres = (book: Book, genres: Genre[]) => boolean;
+const doesBookHaveOneOfGenres: DoesBookHaveOneOfGenres =
+	(book, genres) => any(
 		isTrue,
 		mapBookHasGenres(book, genres),
 	);
 
-const extractBooksWithoutGenres = (books: Book[], genres: Genre[]): Book[] =>
-	filter(
+type ExtractBooksWithoutGenres = (books: Book[], genres: Genre[]) => Book[];
+const extractBooksWithoutGenres =
+	(books, genres) => filter(
 		partialRight(doesBookHaveOneOfGenres, [ genres ]),
 		books,
 	);
@@ -171,8 +179,10 @@ To be fair, this is a lot more code and it takes a lot more time to write that
 amount of code. You'll have to come up with names, split problems into other
 problems, write more tests.
 But, the next time you'll have to check for truthyness, get genres from a book,
-refactor the way genres are stores in a book, check if one book matches one or
-more genres, you won't have to implement that again. It's already there.
+refactor the way genres are stored in a book, check if one book matches one or
+more genres, you won't have to implement that again. It's already there. It
+enables and/or simplifies function composition, reduces cognitive load when
+reading code and improves maintainability.
 
 It's the same philosophy as with TDD. It takes more time initially, but when
 either have to work with the code again or have to refactor some code,
