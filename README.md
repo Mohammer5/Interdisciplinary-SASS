@@ -14,7 +14,7 @@ might find some answers to questions in this book.
 
 * [Introduction](#chapter-intro)
 * [Who this book is for](#chapter-who-is-for)
-* [Prerequisites](#chapter-prerequisites)
+* [Foreknowledge](#chapter-foreknowledge)
 * [CSS class naming convention](#chapter-naming-convention)
 * [State, transformation, presentation](#chapter-stp)
 * [Programming bottom up](#chapter-pbu)
@@ -81,8 +81,8 @@ then this book is for you.
 If you just started learning learning CSS or want to get an overview of what CSS is and
 what it’s capable of, then this book is not for you
 
-<a name="chapter-prerequisites"></a>
-## Prerequisites
+<a name="chapter-foreknowledge"></a>
+## Foreknowledge
 There are a few topic you should be familiar with before you start reading this book.
 
 ### Pure functions and side effects
