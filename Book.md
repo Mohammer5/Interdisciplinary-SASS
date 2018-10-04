@@ -3,6 +3,11 @@
 This is my book about how I write SASS code. I wrote it for people
 who want to get more into writing large, scalable webapps or websites.
 
+Copyright © 2010 by Jan-Gerke Salomon
+
+You may clone the git repository and make any changes to the content
+in order to submit a pull request.
+
 ## Table of Contents
 
 * [Introduction](#chapter-intro)
