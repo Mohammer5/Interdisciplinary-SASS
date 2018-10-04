@@ -97,6 +97,80 @@ The article I recommend to read about this topic is written by Paul Graham.
 You can find it on his website or by simply using a search engine and look for
 “Paul Graham Programming bottom up”.
 
+To summarize this shortly: The most common approach to problems is "Programming
+top down". It describes solving a problem by implementing what is needed in
+order to solve the problem and nothing else. Programming bottom up is the 
+opposite of that. Instead of solving the problem, the developer has to split
+the problem into sub-problems, which he has to split into more sub-problems
+until he found all the root problems which need to be solved in order to solve
+the actual problem.
+
+Here's a short (stupid) example: Your webapp displays a list of books but lacks
+an option to exclude genres. The top down solution could look like this:
+(I use typescript here so that the input types are clear)
+
+```typescript
+type Genre = string;
+interface Book {
+	genres: Genre[];
+	name: string;
+	// more..
+}
+
+const excludeGenresFromBookList =
+	(books: Book[], genres: Genre[]) => books.filter(
+		book => genres.filter(
+			genre => book.genres.contains(genre),
+		),
+	);
+``` 
+
+This would probably work but none of this is reusable in any way.
+The bottom up approach could look like this:
+
+```typescript
+import { any, contains, equals, filter, partial } from 'ramda';
+
+const isTrue = equals(true);
+
+const extractGenresFromBook = prop('genres');
+
+const doesBookHaveGenre = (book: Book, genre: Genre): boolean =>
+	contains(
+		genre,
+		extractGenresFromBook(book),
+	);
+
+const mapBookHasGenres = (book: Book, genres: Genre[]): boolean[] =>
+	map(
+		partial(doesBookHaveGenre, [book]),
+		genres,
+	);
+
+const doesBookHaveOneOfGenres = (book: Book, genres: Genre[]): boolean =>
+	pipe(
+		mapBookHasGenres,
+		any(isTrue),
+	);
+
+const extractBooksWithoutGenres = (genres: Genre[], books: Book[]): Book[] =>
+	filter(
+		doesBookHaveOneOfGenres,
+		books,
+	);
+```
+
+To be fair, this is a lot more code and it takes a lot more time to write that
+amount of code. You'll have to come up with names, split problems into other
+problems, write more tests.
+But, the next time you'll have to check for truthyness, get genres from a book,
+refactor the way genres are stores in a book, check if one book matches one or
+more genres, you won't have to implement that again. It's already there.
+
+It's the same philosophy as with TDD. It takes more time initially, but when
+either have to work with the code again or have to refactor some code,
+you'll be thankful that everything is already in place.
+
 ### BEM
 BEM introduced a naming convention for css classes to improve CSS performance.
 Although the syntax can look a bit ugly, it has worked great for me so far!
