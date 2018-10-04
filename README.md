@@ -129,7 +129,14 @@ This would probably work but none of this is reusable in any way.
 The bottom up approach could look like this:
 
 ```typescript
-import { any, contains, equals, filter, partial } from 'ramda';
+import {
+	any,
+	contains,
+	equals,
+	filter,
+	partial,
+	partialRight,
+} from 'ramda';
 
 const isTrue = equals(true);
 
@@ -143,19 +150,19 @@ const doesBookHaveGenre = (book: Book, genre: Genre): boolean =>
 
 const mapBookHasGenres = (book: Book, genres: Genre[]): boolean[] =>
 	map(
-		partial(doesBookHaveGenre, [book]),
+		partial(doesBookHaveGenre, [ book ]),
 		genres,
 	);
 
 const doesBookHaveOneOfGenres = (book: Book, genres: Genre[]): boolean =>
-	pipe(
-		mapBookHasGenres,
-		any(isTrue),
+	any(
+		isTrue,
+		mapBookHasGenres(book, genres),
 	);
 
-const extractBooksWithoutGenres = (genres: Genre[], books: Book[]): Book[] =>
+const extractBooksWithoutGenres = (books: Book[], genres: Genre[]): Book[] =>
 	filter(
-		doesBookHaveOneOfGenres,
+		partialRight(doesBookHaveOneOfGenres, [ genres ]),
 		books,
 	);
 ```
