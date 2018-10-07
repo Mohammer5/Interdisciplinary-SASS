@@ -154,8 +154,8 @@ type ExtractGenresFrom = (obj: { genres: Genre[] }) => Genre[];
 const extractGenresFrom: ExtractGenresFrom =
 	prop('genres');
 
-type DoesBookHaveGenre = (book: Book, genre: Genre) => boolean;
-const doesBookHaveGenre: DoesBookHaveGenre =
+type HasGenre = (book: Book, genre: Genre) => boolean;
+const hasGenre: HasGenre =
 	(book, genre) => contains(
 		genre,
 		extractGenresFrom(book),
@@ -164,21 +164,28 @@ const doesBookHaveGenre: DoesBookHaveGenre =
 type MapBookHasGenres = (book: Book, genres: Genre[]) => boolean[];
 const mapBookHasGenres: MapBookHasGenres =
 	(book, genres) => map(
-		partial(doesBookHaveGenre, [ book ]),
+		partial(hasGenre, [ book ]),
 		genres,
 	);
 
-type DoesBookHaveOneOfGenres = (book: Book, genres: Genre[]) => boolean;
-const doesBookHaveOneOfGenres: DoesBookHaveOneOfGenres =
+type HasOneOfGenres = (book: Book, genres: Genre[]) => boolean;
+const hasOneOfGenres: HasOneOfGenres =
 	(book, genres) => any(
 		isTrue,
 		mapBookHasGenres(book, genres),
 	);
 
+type HasNoneOfGenres = (book: Book, genres: Genre[]) => boolean;
+const hasNoneOfGenres: HasNoneOfGenres =
+	(book, genres) => pipe(
+		partialRight(doesBookHaveOneOfGenres, [ genres ]),
+		not,
+	);
+
 type ExtractBooksWithoutGenres = (books: Book[], genres: Genre[]) => Book[];
 const extractBooksWithoutGenres =
 	(books, genres) => filter(
-		partialRight(doesBookHaveOneOfGenres, [ genres ]),
+		hasNoneOfGenres,
 		books,
 	);
 ```
