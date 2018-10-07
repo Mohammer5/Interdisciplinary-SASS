@@ -573,3 +573,144 @@ to solve the Problem of where I get the colors from.
 Mixins allow us to separate "presentation" css code (see the Chapter "State,
 logic, presentation") into reusable containers. Like functions they can expect
 parameters.
+
+## Organizing a project
+
+### design system
+
+The design system the UI/UX department came up with can be translated into
+SASS variabkes, mixins and functions. I dedicate a folder in the root directory
+of the styles folder just to the design system. 
+
+Inside this folder, every mixin has its own file (the filename should match the
+mixin's name). Mixin and funtion names are always verbs, this way we can
+differentiate bewteen mixins/functions and variables. The verb itself should be
+descriptive enough to know whether it's a mixin or a function. Variables are
+seperated into files, depending on their purpose.
+
+### Page layouts
+
+Most larger websites and webapps have several pages with the same layout and
+several layouts. The homepage and SEO langing page might have the same layout,
+as well as different checkout pages (address, payment options) or pages for
+different products.
+
+The currently easiest way of handling different layouts is using css grid.
+For browsers that don't support CSS grids, I simply show the mobile view, which
+might not be the optimal solution for desktop browsers but it works.
+
+In the styleguide folder I normally have a directory called "layouts",
+where I have two files: apply-page-layout.scss and layout-arrangements.scss.
+The latter one contains variables for the different grid-areas while the former
+one contains a mixin that accepts a grid area as parameter and generates the
+css rules for the grid layout.
+
+Example of the layout-arrangements.scss for a simple shop page:
+```scss
+$landing-page: "
+	header
+	content
+	footer
+";
+
+$catalog-page-desktop: "
+	header  header
+	sidebar content
+	footer  footer
+";
+
+$catalog-page-mobile: "
+	header
+	sidebar
+	content
+	footer
+";
+
+$product-page-desktop: "
+	header  header
+	content sidebar
+	footer  footer
+";
+
+$product-page-mobile: "
+	header 
+	content
+	sidebar
+	footer
+";
+
+$cart-page-desktop: "
+	header  header
+	content sidebar
+	voucher voucher
+	footer  footer
+";
+
+$cart-page-mobile: "
+	header
+	content
+	voucher
+	sidebar
+	footer
+";
+
+$checkout-page-desktop: "
+	header   header
+	progress progress
+	content  sidebar
+	footer   footer
+";
+
+$checkout-page-mobile: "
+	header
+	progress
+	content
+	sidebar
+	footer
+";
+```
+
+The components for those layouts are quite simple, here's the product page:
+```tsx
+import * as React from 'react';
+import * as PropTypes from 'prop-types';
+import { SFC, Component } from 'react';
+
+type Content = Component | Component[];
+
+interface ProductPageProps {
+	header: Content;
+	main: Content;
+	sidebar: Content;
+	footer: Content;
+}
+
+const ProductPage: SFC<ProductPageProps> = props => (
+	<div classname="page page--product">
+		<header classname="page__header">
+			{props.header}
+		</header>
+		<main classname="page__content">
+			{props.main}
+		</main>
+		<main classname="page__sidebar">
+			{props.sidebar}
+		</main>
+		<footer classname="page__footer">
+			{props.footer}
+		</footer>
+	</div>
+);
+
+const elementPropType = PropTypes.oneOfType([
+	PropTypes.element,
+	PropTypes.arrayOf(PropTypes.element),
+]);
+
+ProductPage.propTypes = {
+	header: elementPropType.isRequired,
+	content: elementPropType.isRequired,
+	sidebar: elementPropType.isRequired,
+	footer: elementPropType.isRequired,
+};
+```
