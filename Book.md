@@ -93,6 +93,10 @@ CSS is and what it’s capable of, then this book is not for you
 There are a few topic you should be familiar with before you start reading this
 book.
 
+I'll have a few examples with typescript and/or react/jsx. Don't worry if
+you're not familiar with those languages/libraries, it should be fairly
+simple to understand the meaning without having to learn the lang/lib.
+
 ### Pure functions and side effects
 This is a topic from outside the CSS world. You can find many blog articles
 just about these two topics. I recommend using your search engine of choice and
