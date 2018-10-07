@@ -100,6 +100,71 @@ read a few articles about them until you think you understand them,
 could apply them in a project right away and see the benefits
 (especially in regards to testability of your code).
 
+Tl;dr... It basically means that you write your code in a mathematical way.
+In school we learned about functions in math. They always produced the same
+result for the same given input. They never influenced anything outside of
+the function nor did they change the input parameters.
+It's the same concept when you write pure functions that are free of side
+effects, there are a few rules to this:
+
+1. You never change the input parameters, treat them as immutable
+2. You never access anything from outside of the function's scope, except
+for other pure functions
+3. You never change anything outside of the function's scope, treat it as
+inaccessible
+4. You always return the same output for a given input
+
+Let's have a look at a few impure functions
+
+Example 1
+```typescript
+interface User {
+	name: string;
+	online: boolean;
+}
+
+type GetOnlineUsers = (prefix?: string): User[];
+const getOnlineUsers: GetOnlineUsers =
+	(prefix = '') =>
+		fetch(`${prefix}/users/?filter=online`);
+```
+
+As you can see here, we do an ajax request which returns a list of online
+users. As the result varies, depending on who's online, this functions is
+clearly impure.
+
+Example 2
+```typescript
+interface User {
+	name: string;
+	online: boolean;
+}
+
+type AppendUser = (users: User[], user: User) => User[];
+const appendUser: AppendUser =
+	(users, user) => {
+		users.push(user);
+		return users;
+	};
+```
+
+In this example, I'm modifying the input parameter, so this function can't be
+pure as this is not allowed.
+
+Example 3
+```typescript
+const createPage = (path, globals = {}) => {
+	if (path.match(/^\/user/)) {
+		window.page = new UserPage(globals);
+	} else {
+		window.page = new Page(globals);
+	}
+}
+```
+
+Modifying anything outside of the function's scope is impure, so this function
+doesn't qualify for pure functions.
+
 ### Programming bottom up
 The article I recommend to read about this topic is written by Paul Graham.
 You can find it on his website or by simply using a search engine and look for
