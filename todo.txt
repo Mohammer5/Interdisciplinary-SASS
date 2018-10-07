@@ -1,0 +1,7 @@
+This file contains issues I couldn't enter in gitlab/github because I'm offline.
+
+- different grid layouts for modules, depending on in which page container they are.
+	- E. g. a module in the sidebar or the main content
+	- highlight that this eliminates the need for container width media queries
+
+- add grid layout mixin example code
