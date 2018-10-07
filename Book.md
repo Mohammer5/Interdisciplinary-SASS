@@ -273,6 +273,63 @@ BEM introduced a naming convention for css classes to improve CSS performance.
 Although the syntax can look a bit ugly, it has worked great for me so far!
 You can read more about this on BEM’s website.
 
+It's basically like this: You compose your HTML with modules. The root
+container of that module is a block (that's the B in BEM). Your module probably
+consists of multiple parts, e. g. a headline, content and/or footer. These are
+elements (the E in BEM). Some modules can have variations, which will be done
+with modifiers (the M in BEM).
+
+The class name of elements is the block name, followed by to underscores and
+the element name. Modifiers are either the block or element class name folowwed
+by two dashes and the name of the modifier
+
+Example 1
+
+```html
+<div class="contact-list">
+	<h3 class="contact-list__headline">
+		Contacts
+	</h3>
+
+	<ul class="contact-list__contacts">
+		<li class="contact-list__contact">
+			Firstname1 Lastname1,<br>
+			<a href="tel:07891234560">0789 123456-0</a>
+		</li>
+		<li class="contact-list__contact">
+			Firstname2 Lastname2,<br>
+			<a href="tel:07891234561">0789 123456-1</a>
+		</li>
+	</ul>
+</div>
+
+<div class="contact-list contact-list--international">
+	<h3 class="contact-list__headline">
+		International Contacts
+	</h3>
+
+	<ul class="contact-list__contacts">
+		<li class="contact-list__contact">
+			Firstname3 Lastname3,<br>
+			<a href="tel:+61987123456">+61 987 123456</a>
+		</li>
+		<li class="contact-list__contact contact-list__contact--no-english">
+			Firstname4 Lastname4 (local language only),<br>
+			<a href="tel:+636341234560">+63 634 123456-0</a>
+		</li>
+		<li class="contact-list__contact">
+			Firstname5 Lastname5,<br>
+			<a href="tel:+636341234561">+63 634 123456-1</a>
+		</li>
+	</ul>
+</div>
+```
+
+Here the module for displaying contacts has a modifier for international
+contacts. It could have a slightly different background color.
+There's also one international contact who can't speak english, which
+might be highlighted in some way.
+
 ### SMACSS
 I like SMACSS mainly for its separation of CSS into problem domains.
 The pages under the category “Core” are available on the website of its inventor.
